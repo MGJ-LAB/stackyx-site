@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#08090d">
+<title>Publier - Stackyx Files</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-area="files" data-page="f-publish" data-root="../">
+<div id="site-header"></div>
+<main>
+  <div class="wrap page" style="max-width:900px">
+    <div class="page-head">
+      <div>
+        <h1>Publier du contenu</h1>
+        <p>Partage une rédaction, une vidéo ou un modèle 3D (gratuit ou à la vente). Ton alias sera affiché, jamais ton nom réel.</p>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button data-tab="article">Rédaction</button>
+      <button data-tab="video">Vidéo</button>
+      <button data-tab="model">Modèle 3D</button>
+    </div>
+
+    <!-- Rédaction -->
+    <section id="panel-article" class="card card-body">
+      <form id="articleForm" class="fg" style="gap:14px" novalidate>
+        <div class="fg"><label for="a-title">Titre</label><input class="field" id="a-title" name="title" maxlength="120"></div>
+        <div class="fg"><label for="a-body">Texte</label><textarea class="textarea" id="a-body" name="body" style="min-height:200px" placeholder="Partage ton expérience, une astuce, un tutoriel..."></textarea></div>
+        <div class="error" id="articleErr"></div>
+        <button class="btn btn-primary" style="justify-self:start">Publier</button>
+      </form>
+    </section>
+
+    <!-- Vidéo -->
+    <section id="panel-video" class="card card-body hidden">
+      <form id="videoForm" class="fg" style="gap:14px" novalidate>
+        <div class="fg"><label for="v-title">Titre</label><input class="field" id="v-title" name="title" maxlength="120"></div>
+        <div class="fg"><label for="v-url">Lien de la vidéo</label><input class="field" id="v-url" name="url" type="url" placeholder="https://..."><span class="help">Héberge ta vidéo sur la plateforme de ton choix et colle le lien.</span></div>
+        <div class="fg"><label for="v-body">Description</label><textarea class="textarea" id="v-body" name="body"></textarea></div>
+        <div class="error" id="videoErr"></div>
+        <button class="btn btn-primary" style="justify-self:start">Publier</button>
+      </form>
+    </section>
+
+    <!-- Modèle 3D -->
+    <section id="panel-model" class="hidden">
+      <form id="modelForm" novalidate>
+        <div class="card card-body">
+          <div class="fgrid">
+            <div class="fg full"><label for="m-title">Titre du modèle</label><input class="field" id="m-title" name="title" maxlength="100"></div>
+            <div class="fg"><label for="m-cat">Catégorie</label><select class="select" id="m-cat" name="cat"></select></div>
+            <div class="fg"><label for="m-level">Niveau</label>
+              <select class="select" id="m-level" name="level"><option>Débutant</option><option>Intermédiaire</option><option>Confirmé</option></select></div>
+            <div class="fg"><label for="m-format">Format</label>
+              <select class="select" id="m-format" name="format"><option>STL</option><option>3MF</option><option>OBJ</option><option>STEP</option></select></div>
+            <div class="fg"><label for="m-lic">Licence</label>
+              <select class="select" id="m-lic" name="lic"><option>Usage personnel</option><option>Usage personnel et commercial</option></select></div>
+            <div class="fg full"><label for="m-tags">Mots-clés (séparés par des virgules)</label><input class="field" id="m-tags" name="tags" placeholder="bureau, rangement, déco"></div>
+            <div class="fg full"><label for="m-desc">Description</label><textarea class="textarea" id="m-desc" name="desc" placeholder="Réglages conseillés, matière, dimensions..."></textarea></div>
+            <div class="fg full"><label for="m-file">Fichier 3D (STL, 3MF, OBJ, STEP, 50 Mo max)</label><input class="field" id="m-file" name="file" type="file" accept=".stl,.3mf,.obj,.step,.stp"></div>
+          </div>
+        </div>
+
+        <div class="card card-body" style="margin-top:16px">
+          <h2 style="font-size:1.15rem;margin-bottom:12px">Prix et calcul de vente</h2>
+          <div class="fg" style="margin-bottom:12px">
+            <label for="m-price">Prix que tu souhaites recevoir (en €, 0 pour un modèle gratuit)</label>
+            <input class="field" id="m-price" name="price" type="number" inputmode="decimal" min="0" max="500" step="0.01" value="1">
+            <span class="help">Tu reçois toujours exactement ce montant. La commission Stackyx et les frais Stripe sont ajoutés au prix payé par l'acheteur.</span>
+          </div>
+          <div id="calcBox"></div>
+          <p class="notice small" style="margin-top:12px">Les frais Stripe sont simulés à 20 % pour cet exemple. En production, ils seront calculés selon la grille réelle de Stripe.</p>
+        </div>
+
+        <div class="card card-body" style="margin-top:16px">
+          <label class="check"><input type="checkbox" name="rights"> <span>Je confirme être l'auteur de ce modèle ou détenir les droits nécessaires pour le publier et le vendre.</span></label>
+          <div class="error" id="modelErr" style="margin-top:10px"></div>
+          <button class="btn btn-gold" style="margin-top:6px">Publier le modèle</button>
+        </div>
+      </form>
+    </section>
+  </div>
+</main>
+<div id="site-footer"></div>
+<script src="../js/app.js"></script>
+</body>
+</html>
